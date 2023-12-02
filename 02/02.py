@@ -6,38 +6,35 @@ red_p = re.compile(r'(\d*) red')
 blue_p = re.compile(r'(\d*) blue')
 
 with open("02/input.txt") as f:
-    i = 0
     count = 0
-    possible_i = []
     while True:
-        i = i+1
         # 1 game per line
         game = f.readline()
         if not game:
             break
-        
         # sets within a game are divided by ";"
         game = game.split(";")
         
         possible = True
+        
+        green_n, red_n, blue_n = 0, 0, 0
+        
+        
         for set in game:
             # get count of each color
             green_m = green_p.search(set)
             red_m = red_p.search(set)
             blue_m = blue_p.search(set)
             
-            if (green_m and int(green_m.group(1)) > 13):
-                possible = False
-                break
-            if (red_m and int(red_m.group(1)) > 12):
-                possible = False
-                break
-            if (blue_m and int(blue_m.group(1)) > 14):
-                possible = False
-                break  
-        
-        if possible:
-            count = count + i
+            if (green_m):
+                green_n = max(int(green_m.group(1)), green_n)
+            if (red_m):
+                red_n = max(int(red_m.group(1)), red_n)
+            if (blue_m):
+                blue_n = max(int(blue_m.group(1)), blue_n)
+            
+        power = green_n * blue_n * red_n
+        count = count + power
             
 print(count)
             
