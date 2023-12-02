@@ -21,11 +21,14 @@ with open("01/input.txt") as f:
         line = f.readline()
         if not line:
             break
-        original = line
+
+        # Replace spelled digits for filtering
         for old, new in replacement:
             line = line.replace(old,new)
         
+        #  filter for digits
         digits = p.findall(line)
         count = count + int(digits[0] + digits[-1])
         
+# solution
 print("The calibration value is: ", count)
