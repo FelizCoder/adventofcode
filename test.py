@@ -3,9 +3,17 @@ from typing import Callable
 from aoc01 import aoc01
 from aoc02 import aoc02
 from aoc03 import aoc03
+from aoc04 import aoc04
 
 class TestAoc(unittest.TestCase):
     def run_test(self, day: int, expected: int, test_func: Callable[[str], int]):
+        """Generic test constructor for AoC Puzzles
+
+        Args:
+            day (int): day of the puzzle
+            expected (int): expected solution
+            test_func (Callable[[str], int]): function under test
+        """        
         filepath = f"{day:02d}/test.txt"  # Assuming your file structure is like "01/test.txt"
         result = test_func(filepath)
         self.assertEqual(
@@ -22,6 +30,9 @@ class TestAoc(unittest.TestCase):
         
     def test_aoc03(self):
         self.run_test(3,4361, aoc03)
+        
+    def test_aoc04(self):
+        self.run_test(4,13,aoc04)
 
 if __name__ == '__main__':
     unittest.main()
