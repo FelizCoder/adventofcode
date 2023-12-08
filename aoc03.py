@@ -7,12 +7,12 @@ def aoc03(filepath:str) -> int:
         input = f.readlines()
     
     d_pat = re.compile(r'\d+')
-    s_pat = re.compile(r'[^.|\d|\s]')
+    s_pat = re.compile(r'\*')
     
     for i,line in enumerate(input):
         # Check for digits in the line
-        for digit in d_pat.finditer(line):
-            left, right = digit.span()
+        for star in s_pat.finditer(line):
+            left, right = star.span()
             # define spans, limit out of bound indexes
             left = max(0,left-1)
             right = right + 1
@@ -21,10 +21,10 @@ def aoc03(filepath:str) -> int:
             
             # Get everything surrounding the digit
             area = [line[left:right] for line in input[up:down]]
-            has_signs = s_pat.search("".join(area))
+            digits = [d_pat.findall(area_line) for area_line in area]
             
-            if has_signs:
-                parts = parts + int(digit.group(0))
+            if len(digits) > 1:
+                parts = parts + int(star.group(0))
     
     return parts
 
