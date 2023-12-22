@@ -11,7 +11,11 @@ def aoc05(filepath:str) -> int:
     # seeds of interest are in the Line after the first ":"
     # last elemts are declaration of next map
     
-    seeds = np.int64(input[1].split()[:-2])
+    seeds_ranges = np.int64(input[1].split()[:-2])
+    seeds = []
+    for i in range(0,len(seeds_ranges),2):
+        seeds += list(range(seeds_ranges[i],seeds_ranges[i] + seeds_ranges[i+1]))
+    
     # All seeds from lowest to highest
     
     almanach = pd.DataFrame(seeds, columns=["seeds"])
