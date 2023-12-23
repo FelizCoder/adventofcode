@@ -5,14 +5,13 @@ def aoc06(filepath:str) -> int:
     with open(filepath) as f:
         input = f.readlines()
     
-    times = input[0].split(":")[-1].split()
-    dists = input[1].split(":")[-1].split()
+    time = input[0].split(":")[-1].replace(" ", "").strip()
+    dist = input[1].split(":")[-1].replace(" ", "").strip()
 
-    for (time, dist) in zip(times, dists):
-        min, max = calc_timespan(float(time), float(dist))    
-        span = max - min + 1
-        if span:
-            solution *= span
+    min, max = calc_timespan(float(time), float(dist))    
+    span = max - min + 1
+    if span:
+        solution *= span
     return solution
 
 def calc_timespan(t: float, s: float) -> tuple[float]:
