@@ -6,6 +6,7 @@ from aoc03 import aoc03
 from aoc04 import aoc04
 from aoc05 import aoc05
 from aoc06 import aoc06
+from aoc08 import aoc08
 
 class TestAoc(unittest.TestCase):
     def run_test(self, day: int, expected: int, test_func: Callable[[str], int]):
@@ -41,6 +42,9 @@ class TestAoc(unittest.TestCase):
     
     def test_aoc06(self):
             self.run_test(6,71503,aoc06)
+            
+    def test_aoc08(self):
+        self.run_test(8,6,aoc08)
 
 if __name__ == '__main__':
     unittest.main()
