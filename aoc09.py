@@ -8,12 +8,15 @@ def aoc09(filepath:str) -> int:
         while len(input) > 0:
             # calc diff till all 0
             history = np.array(input, dtype=np.int32)
-            diffs = np.array(history[-1])
+            diffs = np.array(history[0])
             while np.any(history != 0):
                 history = np.diff(history)
-                diffs = np.append(history[-1], diffs)
+                diffs = np.append(history[0], diffs)
             # calculate the prediction
-            solution += np.sum(diffs)
+            pred = 0
+            for i in diffs[1:]:
+                pred = i - pred
+            solution += pred
             input = f.readline().split()
     
     return solution

@@ -48,7 +48,7 @@ class TestAoc(unittest.TestCase):
         self.run_test(8,6,aoc08)
 
     def test_aoc09(self):
-            self.run_test(9,114,aoc09)
+            self.run_test(9,2,aoc09)
 
 if __name__ == '__main__':
     unittest.main()
